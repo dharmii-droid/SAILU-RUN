@@ -81,8 +81,25 @@ export default function Home() {
     const player = new THREE.Group();
     const torso = new THREE.Mesh(new THREE.CapsuleGeometry(0.43,0.65,5,10), accentMat);
     torso.position.y=1.35; torso.castShadow=true; player.add(torso);
-    const head = new THREE.Mesh(new THREE.SphereGeometry(0.48,24,18), skinMat);
-    head.position.y=2.18; head.castShadow=true; player.add(head);
+    
+const faceTexture = new THREE.TextureLoader().load("/sailu-face.png");
+faceTexture.colorSpace = THREE.SRGBColorSpace;
+
+const faceMaterial = new THREE.MeshBasicMaterial({
+  map: faceTexture,
+  transparent: true,
+  side: THREE.DoubleSide,
+  depthWrite: false
+});
+
+const face = new THREE.Mesh(
+  new THREE.PlaneGeometry(0.95, 1.15),
+  faceMaterial
+);
+
+face.position.set(0, 2.2, 0);
+player.add(face);
+
     // The runner wears the supplied portrait as a face texture.
     // The transparent oval keeps the portrait fitted to the 3D head.
     const faceTexture = new THREE.TextureLoader().load("/sailu-face.png");
