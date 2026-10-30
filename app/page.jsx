@@ -97,7 +97,8 @@ const face = new THREE.Mesh(
   faceMaterial
 );
 
-face.position.set(0, 2.2, 0);
+face.position.set(0, 2.38, 0.8);
+   face.rotation.x = -0.25;
 player.add(face);
    
     const arms=[], legs=[];
